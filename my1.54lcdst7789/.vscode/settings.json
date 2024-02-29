@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "stm32f10x.h": "c",
+        "delay.h": "c",
+        "tft1_54.h": "c",
+        "fonts.h": "c"
+    }
+}
