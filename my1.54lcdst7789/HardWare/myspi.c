@@ -4,7 +4,7 @@
  * @Author       : wuu
  * @Date         : 2024-02-16 15:50:44
  * @Version      : 0.0.1
- * @LastEditTime : 2024-02-24 17:05:04
+ * @LastEditTime : 2024-03-01 20:03:24
  * @Copyright    : G AUTOMOBILE RESEARCH INSTITUTE CO.,LTD Copyright (c) 2024.
 **/
 // #include "stm32f10x.h"                  // Device header
@@ -79,7 +79,7 @@ void SPI_End(void)
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_Init(GPIOA, &GPIO_InitStructure);
@@ -93,7 +93,7 @@ void SPI_End(void)
         SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;    //串行同步时钟的空闲状态为低电平
         SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;    //串行同步时钟的第一个跳变沿（上升或下降）数据被采样
         SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;    //NSS信号由硬件（NSS管脚）还是软件（SSI位）管理:内部NSS信号有SSI位控制
-        SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;    //256分频
+        SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;    //设置时钟频率
         SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;    //数据传输从MSB位还是LSB位开始:数据传输从MSB位开始
         SPI_InitStructure.SPI_CRCPolynomial = 7;    //CRC值计算的多项式
         SPI_Init(SPI1, &SPI_InitStructure);
@@ -110,8 +110,8 @@ void SPI_End(void)
         while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);    //等待发送区空
         SPI_I2S_SendData(SPI1, Sendbyte);    //通过外设SPI1发送一个byte  数据
         // SPI1->SR &= (1<<0);    //清除发送区空标志
-        SPI1->SR;    //清除发送区空标志
-        // while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET);    //等待发送完毕
+        // SPI1->SR;    //清除发送区空标志
+        while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET);    //等待发送完毕
         // while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET);
         // i = SPI_I2S_ReceiveData(SPI1);    //清除RXNE标志
     }

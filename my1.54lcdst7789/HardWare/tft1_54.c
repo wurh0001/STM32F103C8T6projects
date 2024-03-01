@@ -24,7 +24,6 @@ void TFT_SendData(uint8_t data)
 {
     SPI_DC_H();
     SPI_Start();
-    // SPI_SendByte(data);
 	SPI_SendByte(data);
     SPI_End();
 }
@@ -33,7 +32,6 @@ void TFT_SendCmd(uint8_t cmd)
 {
     SPI_DC_L();
     SPI_Start();
-    // SPI_SendByte(cmd);
 	SPI_SendByte(cmd);
     SPI_End();
 }

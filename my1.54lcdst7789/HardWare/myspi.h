@@ -14,8 +14,8 @@
 #include "stm32f10x.h"                  // Device header
 
 typedef unsigned char uint8_t;
-//#define HARDSPI     // 选择使用硬件SPI通信
-#define SOFTSPI     // 选择使用模拟SPI通信
+#define HARDSPI     // 选择使用硬件SPI通信
+// #define SOFTSPI     // 选择使用模拟SPI通信
 
     #ifdef SOFTSPI
     /*-------------------------------------以下为模拟SPI的宏定义---------------------------------------------*/

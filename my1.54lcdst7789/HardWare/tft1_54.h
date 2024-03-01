@@ -1,6 +1,7 @@
 /**
  * @FilePath     : /my1.54lcdst7789/HardWare/tft1_54.h
  * @Description  :  1.54寸屏幕驱动头文件，使用模拟SPI通信
+ *                  该屏幕驱动为ST7789驱动，分辨率为240*240，时钟频率最高为62.5MHz
  * @PinDefinition   :   模拟SPI通信,所有引脚都可更改
  *                      1. SCL  -->  PA5  
  *                      2. SDA  -->  PA7
