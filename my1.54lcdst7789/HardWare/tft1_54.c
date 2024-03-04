@@ -4,7 +4,7 @@
  * @Author       : wuu
  * @Date         : 2024-02-17 16:56:42
  * @Version      : 0.0.1
- * @LastEditTime : 2024-02-29 22:18:17
+ * @LastEditTime : 2024-03-04 22:09:09
  * @Copyright    : G AUTOMOBILE RESEARCH INSTITUTE CO.,LTD Copyright (c) 2024.
 **/
 
@@ -280,8 +280,8 @@ void TFT_DisplayRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t
 {
 	TFT_DisplayStraightLine(x0, y0, x1, y0 + width, color);
 	TFT_DisplayStraightLine(x1 - width, y0 + width, x1, y1, color);
-	TFT_DisplayStraightLine(x0, y0, x0, y1, color);
-	TFT_DisplayStraightLine(x1, y0, x1, y1, color);
+	TFT_DisplayStraightLine(x1 - width, y1, x0, y1 - width, color);
+	TFT_DisplayStraightLine(x0, y1 - width, x0, y0, color);
 }
 
 // 显示一个圆角矩形

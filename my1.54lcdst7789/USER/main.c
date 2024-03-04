@@ -10,11 +10,9 @@ int main()
     while(1)
     {
         TFT_DisplayAsciiStr(10, 10, "Abcdefg", BLACK);
-        TFT_Clear_Full(RED);
         DelayS(1);    
         TFT_DisplayStraightLine(20, 80, 25, 120, RED);    
         DelayS(1); 
-        TFT_Clear_Full(GREEN);
     }
     return 0;
 }
