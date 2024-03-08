@@ -4,7 +4,7 @@
  * @Author       : wuu
  * @Date         : 2024-02-17 16:56:42
  * @Version      : 0.0.1
- * @LastEditTime : 2024-03-04 22:09:09
+ * @LastEditTime : 2024-03-08 23:52:49
  * @Copyright    : G AUTOMOBILE RESEARCH INSTITUTE CO.,LTD Copyright (c) 2024.
 **/
 
@@ -239,12 +239,12 @@ void TFT_DisplayAsciiStr(uint16_t x, uint16_t y, uint8_t *str, uint16_t color)
 void TFT_DisplayStraightLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)
 {
 	int16_t dx, dy;
-	uint16_t i, j;
+	int16_t i, j;
 	dx = x1 - x0;
 	dy = y1 - y0;
-	if(dx >= 0)
+	if(dx >= 0 && dy >= 0)
 	{
-		// 竖直线
+		// 横线
 		if(dx > dy)
 		{
 			for(j = 0; j < dx; j++)
@@ -258,7 +258,7 @@ void TFT_DisplayStraightLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1,
 				x0++;
 			}
 		}
-		// 横线
+		// 竖直线
 		else
 		{
 			for(j = 0; j < dy; j++)
@@ -273,6 +273,55 @@ void TFT_DisplayStraightLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1,
 			}
 		}
 	}
+	else if (dx < 0 && dy < 0)
+	{
+		// 横线
+		if(dx < dy)
+		{
+			for(j = 0; j > dx; j--)
+			{
+				for(i = 0; i > dy; i--)
+				{
+					TFT_SetAddr(x0, y0 - i, x0, y0 - i);
+					TFT_SendData(color >> 8);
+					TFT_SendData(color);
+				}
+				x0--;
+			}
+		}
+		// 竖直线
+		else
+		{
+			for(j = 0; j > dy; j--)
+			{
+				for(i = 0; i > dx; i--)
+				{
+					TFT_SetAddr(x0 - i, y0, x0 - i, y0);
+					TFT_SendData(color >> 8);
+					TFT_SendData(color);
+				}
+				y0--;
+			}
+		}
+	
+	}
+	else if(dx < 0 && dy > 0)
+	{
+		if((0 - dx) > dy)
+		{
+			for(j = 0; j > dy; j--)
+			{
+				for(i = 0; i > dx; i--)
+				{
+					TFT_SetAddr(x0 - i, y0, x0 - i, y0);
+					TFT_SendData(color >> 8);
+					TFT_SendData(color);
+				}
+				y0--;
+			}
+		}
+	}
+
 }
 
 // 显示一个矩形
